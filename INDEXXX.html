@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Peta Persebaran Rumah Sakit Di Kota Metro</title>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+	 <style>
+	 #map { height: 100vh; }
+	 <!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Peta Persebaran Pendidikan Kota Metro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    
+    <!-- Custom CSS -->
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f4f4f4;
+        }
+
+        header {
+            background-color: pink;
+            color: black;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        #map {
+            height: calc(100vh - 70px); /* header height */
+            width: 100%;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Optional: Tooltip and popup styling */
+        .leaflet-popup-content-wrapper {
+            background: #ffffffee;
+            color: #2c3e50;
+            font-size: 14px;
+            border-radius: 8px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .leaflet-popup-tip {
+            background: #ffffffee;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                font-size: 16px;
+                padding: 0.8rem;
+            }
+
+            #map {
+                height: calc(100vh - 60px);
+            }
+        }
+    </style>
+	 </style>
+	 <script src="leaflet.ajax.min.js"></script>
+</head>
+<body>
+<div class="card" id="tentang">
+    <header>
+        <h2>Peta Persebaran Rumah Sakit Kota Metro</h2>
+    </header>
+	<div id="map"></div>
+</body>
+ <!-- Make sure you put this AFTER Leaflet's CSS -->
+ <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+	 <script src="leaflet.ajax.min.js"></script>
+	 <script type="text/javascript">
+	 var map = L.map('map').setView([-5.1209974,105.2658665,13], 13);
+	 
+	 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+
+	function popUp(f,l){
+    var out = [];
+    if (f.properties){
+        for(key in f.properties){
+            out.push(key+": "+f.properties[key]);
+        }
+        l.bindPopup(out.join("<br />"));
+    }
+}
+var jsonTest = new L.GeoJSON.AJAX(["METRO.geojson"],{onEachFeature:popUp}).addTo(map);
+var jsonTest = new L.GeoJSON.AJAX(["PENDIDIKAN.geojson"],{onEachFeature:popUp}).addTo(map);
+</script>
+</html>
